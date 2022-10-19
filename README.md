@@ -78,11 +78,13 @@
 ### __Job__
 - POST /jobs - Creates a job without Temp
 <img width="1792" alt="image" src="https://user-images.githubusercontent.com/93105607/196624038-27760400-26b9-49a3-a641-a1e257b521f2.png">
+
 - POST /jobs - Creates a job with Temp assigned
 <img width="1788" alt="image" src="https://user-images.githubusercontent.com/93105607/196628386-f762acb5-aaaa-477a-8022-e4d9e45d9351.png">
 
 - PATCH /jobs/{jobId} - Updates the fields depends on header request
 <img width="1786" alt="image" src="https://user-images.githubusercontent.com/93105607/196624518-9ab7ba15-8243-4da2-b727-2b765081b860.png">
+
 - PATCH /jobs/{jobId} - Assign temp to job
 <img width="1794" alt="image" src="https://user-images.githubusercontent.com/93105607/196627532-f49271d7-6bfd-4219-b85b-9f5534057b64.png">
 
@@ -100,10 +102,13 @@
 ### __Temp__
 - POST /temps - Creats a temp
 <img width="1794" alt="image" src="https://user-images.githubusercontent.com/93105607/196626526-af481050-c168-4779-8826-8bc4ea750d3d.png">
+
 - GET  /temps - Get all temps
 <img width="1791" alt="image" src="https://user-images.githubusercontent.com/93105607/196626924-d8b6c931-4e59-4aa6-829c-b2152f50dccd.png">
+
 - GET  /temps?jobid={jobid} - Get available temps to be assigned for given jobId
-- <img width="1784" alt="image" src="https://user-images.githubusercontent.com/93105607/196660255-eaf30bf4-7a20-407d-ba5e-6eda93b288c0.png">
+<img width="1784" alt="image" src="https://user-images.githubusercontent.com/93105607/196660255-eaf30bf4-7a20-407d-ba5e-6eda93b288c0.png">
+
 - GET  /temps/1 - Get a temp by its id
 <img width="1796" alt="image" src="https://user-images.githubusercontent.com/93105607/196627344-7411e793-271c-4886-a6c3-8e681d4cdf9b.png">
 
