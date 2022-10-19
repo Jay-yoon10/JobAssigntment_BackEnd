@@ -16,15 +16,14 @@ public class TempController {
     @Autowired
     TempService tempService;
 
-    //    --------------- Temps -------------------
+    // POST /temps - creates a temp
     @PostMapping("/temps")
-    public Temp createTemp(@RequestBody Temp temp, @RequestParam(required = false) Long jobId) {
+    public Temp createTemp(@RequestBody Temp temp) {
         return tempService.createTemp(temp);
     }
 
-    // GET / temps - List all temps
-    // GET / temps?jobId={jobId} - List temps that are available for a job based on the jobs date range
-
+    // GET /temps - List all temps
+    // GET /temps?jobId={jobId} - List temps that are available for a job based on the jobs date range
     @GetMapping("/temps")
     public List<Temp> getAllTemps(@RequestParam(required = false) @PathVariable(value = "jobId") Long jobId) {
         if(jobId !=null){
@@ -33,6 +32,7 @@ public class TempController {
         return tempService.getAllTemps();
     }
 
+    // GET /temps/{tempId} - Get a temp by its given Id
     @GetMapping("/temps/{tempId}")
     public Optional<Temp> getTempById(@PathVariable(value = "tempId") Long tempId) {
         return tempService.getTempById(tempId);

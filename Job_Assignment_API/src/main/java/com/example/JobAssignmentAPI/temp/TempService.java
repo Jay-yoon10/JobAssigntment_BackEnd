@@ -42,7 +42,6 @@ public class TempService {
         Job newJob = new Job();
         newJob.setStartDate(jobs.getStartDate());
         List<Temp> newTemp = tempRepository.newAvailableTemps(newJob.getStartDate());
-//        BeanUtils.copyProperties(newTemp, allTemps);
         List<Temp> newList = Stream.concat(newTemp.stream(), allTemps.stream()) .collect(Collectors.toList());
         return newList;
     }

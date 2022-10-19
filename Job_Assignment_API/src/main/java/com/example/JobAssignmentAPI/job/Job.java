@@ -73,37 +73,7 @@ public class Job implements Serializable {
     public Temp getTemp() {
         return temp;
     }
-//    public Job createJob2(Long jobId, JobRequestDTO job){
-//
-//        Set<Job> jobs = new HashSet<>();
-//        Temp temp = new Temp();
-//        Optional<Job> jobById = jobRepository.findById(jobId);
-//        Optional<Temp> byId = tempRepository.findById(job.getTempId());
-//        if(!byId.isPresent()){
-//            throw new ResourceNotFoundException("Temp not found");
-//        }
-//        Temp tempById = byId.get();
-//        Job jobToCreate = jobById.get();
-//        // Tie Temp to Job
-//        jobToCreate.setTemp(tempById);
-//        BeanUtils.copyProperties(job, jobToCreate);
-//        Job job2 = jobRepository.save(jobToCreate);
-//
-//        // Tie Job to Temp
-//        jobs.add(job2);
-//        temp.setJobs(jobs);
-//
-//        return job2;
-//
-//    }
 
-    //    public void setTempId (Long tempId){
-//        temp.setId(tempId);
-//    }
-//
-//    public Long getTempId () {
-//        return temp.getId();
-//    }
     public TempWithJobDTO getAssignedTemp() {
         if (temp == null) {
             return null;

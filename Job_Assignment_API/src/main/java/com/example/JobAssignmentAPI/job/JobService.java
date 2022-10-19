@@ -1,6 +1,5 @@
 package com.example.JobAssignmentAPI.job;
 
-import com.example.JobAssignmentAPI.exception.ResourceNotFoundException;
 import com.example.JobAssignmentAPI.temp.Temp;
 import com.example.JobAssignmentAPI.temp.TempRepository;
 import org.springframework.beans.BeanUtils;
@@ -43,9 +42,7 @@ public class JobService {
 
         Optional<Temp> tempById = tempRepository.findById(request.getTempId());
         List<Temp> newTemp = tempRepository.newAvailableTemps(request.getStartDate());
-//        if (newTemp.isEmpty()) {
-//            throw new ResourceNotFoundException("Temp is unavailable for the job");
-//        }
+
         Temp tempById2 = tempById.get();
         Job job = new Job();
         job.setName(request.getName());
