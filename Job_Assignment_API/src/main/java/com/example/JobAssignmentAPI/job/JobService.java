@@ -43,9 +43,9 @@ public class JobService {
 
         Optional<Temp> tempById = tempRepository.findById(request.getTempId());
         List<Temp> newTemp = tempRepository.newAvailableTemps(request.getStartDate());
-        if (newTemp.isEmpty()) {
-            throw new ResourceNotFoundException("Temp is unavailable for the job");
-        }
+//        if (newTemp.isEmpty()) {
+//            throw new ResourceNotFoundException("Temp is unavailable for the job");
+//        }
         Temp tempById2 = tempById.get();
         Job job = new Job();
         job.setName(request.getName());

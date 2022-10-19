@@ -8,6 +8,8 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @Service
 public class TempService {
@@ -34,18 +36,15 @@ public class TempService {
 
     public List<Temp> getAvailableTemps(Long jobId) {
 
-        List<Temp> allTemps = tempRepository.findAll();
-        Temp temp = new Temp();
+        List<Temp> allTemps = tempRepository.tempsWithoutJobs();
 
         Job jobs = jobRepository.findByNewId(jobId);
         Job newJob = new Job();
         newJob.setStartDate(jobs.getStartDate());
         List<Temp> newTemp = tempRepository.newAvailableTemps(newJob.getStartDate());
-
-        BeanUtils.copyProperties(temp, allTemps);
-        BeanUtils.copyProperties(newTemp, temp);
-
-        return newTemp;
+//        BeanUtils.copyProperties(newTemp, allTemps);
+        List<Temp> newList = Stream.concat(newTemp.stream(), allTemps.stream()) .collect(Collectors.toList());
+        return newList;
     }
 
 }
