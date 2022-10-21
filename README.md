@@ -26,7 +26,7 @@
 <hr/>
 
 
-```json
+```js
 // GET /jobs/{id}
 {
 	id: ...,
