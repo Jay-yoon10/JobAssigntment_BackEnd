@@ -6,7 +6,7 @@
   Your task is to build a Resourcing API using the Java Spring Boot framework, that allows consumers to assign temps to jobs.
 <hr/>
 
-  **Endpoints**
+### **Endpoints**
 <hr/>
 
 - ### jobs
@@ -114,5 +114,16 @@
 
 - GET  /temps/1 - Get a temp by its id
 <img width="1796" alt="image" src="https://user-images.githubusercontent.com/93105607/196627344-7411e793-271c-4886-a6c3-8e681d4cdf9b.png">
+
+<hr/>
+
+### *Futue goals / Improvement*
+
+<hr/>
+
+- Use Spring Security for authentication / authorization implementation.
+- Create Front-End Using React and connect with it to make a full stacked app in the end.
+  
+  
 
 
