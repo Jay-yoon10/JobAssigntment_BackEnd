@@ -6,6 +6,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
@@ -22,10 +23,12 @@ public class Temp implements Serializable {
     private Long id;
 
     @Column(name = "first_name")
+    @NotNull(message = "Enter the temp's first name")
     @NotBlank(message = "Enter the temp's first name")
     public String firstName;
 
     @Column(name = "last_name")
+    @NotNull(message = "Enter the temp's first name")
     @NotBlank(message = "Enter the temp's last name")
     public String lastName;
 

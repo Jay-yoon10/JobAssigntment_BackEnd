@@ -1,23 +1,26 @@
 package com.example.JobAssignmentAPI.temp;
 
 import com.example.JobAssignmentAPI.job.Job;
-import com.example.JobAssignmentAPI.job.JobRepository;
-import org.springframework.beans.BeanUtils;
+import com.example.JobAssignmentAPI.job.JobService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 @Service
 public class TempService {
 
     @Autowired
     TempRepository tempRepository;
-    @Autowired
-    JobRepository jobRepository;
+
+    private final JobService jobService;
+
+    public TempService(JobService jobService) {
+        this.jobService = jobService;
+    }
 
 
     public Temp createTemp(Temp temp) {
@@ -27,6 +30,8 @@ public class TempService {
     public List<Temp> getAllTemps() {
 
         return tempRepository.findAll();
+
+
     }
 
     public Optional<Temp> getTempById(Long tempId) {
@@ -36,14 +41,23 @@ public class TempService {
 
     public List<Temp> getAvailableTemps(Long jobId) {
 
-        List<Temp> allTemps = tempRepository.tempsWithoutJobs();
+        List<Temp> newAvailableTemps = new ArrayList<>();
 
-        Job jobs = jobRepository.findByNewId(jobId);
+        Optional<Job> jobById = jobService.getJobById(jobId);
         Job newJob = new Job();
-        newJob.setStartDate(jobs.getStartDate());
-        List<Temp> newTemp = tempRepository.newAvailableTemps(newJob.getStartDate());
-        List<Temp> newList = Stream.concat(newTemp.stream(), allTemps.stream()) .collect(Collectors.toList());
-        return newList;
+        if (jobById.isEmpty()) {
+            throw new RuntimeException("Cannot find a job with given Id");
+        }
+        newJob.setStartDate(jobById.get().getStartDate());
+        List<Temp> availableTemps = tempRepository.tempsWithoutJobs(newJob.getStartDate());
+        List<Temp> tempsWithoutJobs = tempRepository.tempsWithoutJobs();
+        availableTemps.removeIf(temp -> temp.getJobs().stream().anyMatch(job -> job.getEndDate().isAfter(newJob.getStartDate())));
+        newAvailableTemps.addAll(tempsWithoutJobs);
+        newAvailableTemps.addAll(availableTemps);
+        newAvailableTemps.sort(Comparator.comparing(Temp::getId));
+
+        return newAvailableTemps;
+
     }
 
 }

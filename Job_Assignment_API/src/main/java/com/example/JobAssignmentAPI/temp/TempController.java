@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.Optional;
 
 @RestController
@@ -18,12 +19,8 @@ public class TempController {
 
     // POST /temps - creates a temp
     @PostMapping("/temps")
-    public ResponseEntity<Object> createTemp(@RequestBody Temp temp) {
-        if(temp != null){
-            if(temp.getFirstName() == null || temp.getLastName() == null){
-                return ResponseEntity.badRequest().body("Please provide name of Temp - names cannot be null");
-            }
-        }
+    public ResponseEntity<Object> createTemp(@RequestBody @Valid Temp temp) {
+
         return ResponseEntity.ok(tempService.createTemp(temp));
     }
 
@@ -31,7 +28,7 @@ public class TempController {
     // GET /temps?jobId={jobId} - List temps that are available for a job based on the jobs date range
     @GetMapping("/temps")
     public ResponseEntity<Object> getAllTemps(@RequestParam(required = false) @PathVariable(value = "jobId") Long jobId) {
-        if(jobId !=null){
+        if (jobId != null) {
 
             return ResponseEntity.ok(tempService.getAvailableTemps(jobId));
         }
@@ -42,7 +39,7 @@ public class TempController {
     @GetMapping("/temps/{tempId}")
     public ResponseEntity<Object> getTempById(@PathVariable(value = "tempId") Long tempId) {
         Optional<Temp> tempFoundBYId = tempService.getTempById(tempId);
-        if(tempFoundBYId.isPresent()){
+        if (tempFoundBYId.isPresent()) {
             return ResponseEntity.ok(tempService.getTempById(tempId));
 
         }
