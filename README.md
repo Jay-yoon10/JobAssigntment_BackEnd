@@ -117,7 +117,7 @@
 
 <hr/>
 
-### *Futue goals / Improvement*
+### *Future goals / Improvement*
 
 <hr/>
 
