@@ -1,12 +1,33 @@
 # __JobAssigntment_BackEnd__
-## __Job Assignment API__
+
+## ***TECH STACKS***
+
+<hr/>
+<p>
+
+<img src="https://img.shields.io/badge/Java-D9DDDC?style=for-the-badge" /> 
+<img src="https://img.shields.io/badge/Spring_Boot-D9DDDC?style=for-the-badge" /> 
+<img src="https://img.shields.io/badge/Spring_Security-D9DDDC?style=for-the-badge" /> 
+
+
+<img src="https://img.shields.io/badge/MySQL-D9DDDC?style=for-the-badge" />
+<img src="https://img.shields.io/badge/JWT-D9DDDC?style=for-the-badge" />
+<img src="https://img.shields.io/badge/SWAGGER_UI-D9DDDC?style=for-the-badge" />
+<img src="https://img.shields.io/badge/POSTMAN-D9DDDC?style=for-the-badge" />
+</p>
+
 <hr/>
 
-### *Summary*
-  Your task is to build a Resourcing API using the Java Spring Boot framework, that allows consumers to assign temps to jobs.
+## ***PROJECT GOAL***
+  The task is to build a Resourcing API using the Java Spring Boot framework, that allows consumers to assign temps to jobs.
 <hr/>
 
-### **Endpoints**
+## ***PROJECT OVERVIEW***
+
+<hr/>
+
+
+## **API Endpoints**
 <hr/>
 
 - ### jobs
@@ -73,8 +94,6 @@
 
 <hr/>
 
-### *PROJECT DEMO*
-<hr/>
 
 ### *TESTING OUT ENDPOINTS IN POSTMAN*
 
@@ -114,6 +133,24 @@
 
 - GET  /temps/1 - Get a temp by its id
 <img width="1796" alt="image" src="https://user-images.githubusercontent.com/93105607/196627344-7411e793-271c-4886-a6c3-8e681d4cdf9b.png">
+
+<hr/>
+
+## ***JWT TOKEN IMPLEMENTATION***
+
+<hr/>
+
+<img width="1032" alt="image" src="https://user-images.githubusercontent.com/93105607/201075404-f4f401ca-8dc1-4b0d-8175-34ab41a117f3.png">
+
+### ***Token Header & Payload include***
+
+{"alg":HS512"}.
+{"sub":"40288084846130c901846130d8d40000","iss":"Job Assignment App","iat":1668077916,"exp":1668164316}
+.[signature]
+
+
+## ***SWAGGER UI***
+![image](https://user-images.githubusercontent.com/93105607/201067204-77f1bf42-9894-4340-809e-010e8b01dc01.png)
 
 <hr/>
 
