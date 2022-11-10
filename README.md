@@ -144,8 +144,11 @@
 
 ### ***Token Header & Payload include***
 
-{"alg":HS512"}.
-{"sub":"40288084846130c901846130d8d40000","iss":"Job Assignment App","iat":1668077916,"exp":1668164316}
+{"alg":HS512"}. // header
+{"sub":"40288084846130c901846130d8d40000", // payload
+"iss":"Job Assignment App",
+"iat":1668077916,
+"exp":1668164316}
 .[signature]
 
 
