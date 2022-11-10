@@ -1,7 +1,10 @@
-package com.example.JobAssignmentAPI.job;
+package com.example.JobAssignmentAPI.service;
 
-import com.example.JobAssignmentAPI.temp.Temp;
-import com.example.JobAssignmentAPI.temp.TempRepository;
+import com.example.JobAssignmentAPI.dto.JobCreateDTO;
+import com.example.JobAssignmentAPI.model.Job;
+import com.example.JobAssignmentAPI.repository.JobRepository;
+import com.example.JobAssignmentAPI.model.Temp;
+import com.example.JobAssignmentAPI.repository.TempRepository;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

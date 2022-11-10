@@ -1,4 +1,4 @@
-package com.example.JobAssignmentAPI.user;
+package com.example.JobAssignmentAPI.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,11 +9,13 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+
 public class UserDTO {
     private String token;
     private String email;
     private String username;
     private String password;
     private String id;
-}
 
+
+}

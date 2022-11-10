@@ -1,6 +1,6 @@
-package com.example.JobAssignmentAPI.temp;
+package com.example.JobAssignmentAPI.model;
 
-import com.example.JobAssignmentAPI.job.Job;
+import com.example.JobAssignmentAPI.model.Job;
 import lombok.Getter;
 import lombok.Setter;
 

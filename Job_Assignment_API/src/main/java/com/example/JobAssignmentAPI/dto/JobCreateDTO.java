@@ -1,4 +1,4 @@
-package com.example.JobAssignmentAPI.job;
+package com.example.JobAssignmentAPI.dto;
 
 import lombok.Data;
 

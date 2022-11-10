@@ -1,4 +1,4 @@
-package com.example.JobAssignmentAPI.user;
+package com.example.JobAssignmentAPI.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -7,19 +7,17 @@ import lombok.NoArgsConstructor;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
-import java.io.Serializable;
 
 @Data
 @Entity
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-//@Table(uniqueConstraints = {@UniqueConstraint(columnNames = "email")})
-@Table (name ="user")
-public class UserEntity implements Serializable {
+@Table(name="user")
+public class User {
     @Id
-    @GeneratedValue(generator="system-uuid")
-    @GenericGenerator(name="system-uuid", strategy = "uuid")
+    @GeneratedValue(generator = "system-uuid")
+    @GenericGenerator(name = "system-uuid", strategy = "uuid")
     private String id;
 
     @Column(nullable = false)
@@ -30,4 +28,6 @@ public class UserEntity implements Serializable {
 
     @Column(nullable = false)
     private String password;
+
+
 }

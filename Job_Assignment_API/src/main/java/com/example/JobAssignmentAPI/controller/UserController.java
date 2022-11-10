@@ -1,40 +1,50 @@
-package com.example.JobAssignmentAPI.user;
+package com.example.JobAssignmentAPI.controller;
 
-import com.example.JobAssignmentAPI.security.TokenProvider;
+import com.example.JobAssignmentAPI.dto.ResponseDTO;
+import com.example.JobAssignmentAPI.dto.UserDTO;
+import com.example.JobAssignmentAPI.model.User;
+import com.example.JobAssignmentAPI.security.security.TokenProvider;
+import com.example.JobAssignmentAPI.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+
 @Slf4j
 @RestController
-@RequestMapping("/api/v1")
+@RequestMapping("/api/v1/auth")
 public class UserController {
 
     @Autowired
-    UserService userService;
+    private UserService userService;
+
     @Autowired
-    TokenProvider tokenProvider;
-    @PostMapping("/auth/signup")
-    public ResponseEntity<?> userSignUp (@RequestBody UserDTO userDTO){
+    private TokenProvider tokenProvider;
+
+    private PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+
+    @PostMapping("/signup")
+    public ResponseEntity<?> signUpUser(@RequestBody UserDTO userDTO){
         try {
-            // save user upon request
-            UserEntity user = UserEntity.builder()
+            User user = User.builder()
                     .email(userDTO.getEmail())
                     .username(userDTO.getUsername())
-                    .password(userDTO.getPassword())
+                    .password(passwordEncoder.encode(userDTO.getPassword()))
                     .build();
 
-            // save to repo using service layer
-            UserEntity userSignUp = userService.create(user);
+            User signUpUser = userService.create(user);
             UserDTO responseUserDTO = UserDTO.builder()
-                    .email(userSignUp.getEmail())
-                    .id(userSignUp.getId())
-                    .username(userSignUp.getUsername())
+                    .email(signUpUser.getEmail())
+                    .id(signUpUser.getId())
+                    .username(signUpUser.getUsername())
                     .build();
+
             return ResponseEntity.ok().body(responseUserDTO);
         } catch (Exception e){
             ResponseDTO responseDTO = ResponseDTO.builder().error(e.getMessage()).build();
@@ -42,24 +52,29 @@ public class UserController {
         }
     }
 
-    @PostMapping("/auth/signin")
+    @PostMapping("/signin")
     public ResponseEntity<?> authenticate(@RequestBody UserDTO userDTO){
-        UserEntity user = userService.getByCredentials(userDTO.getEmail(), userDTO.getPassword());
+        User user = userService.getByCredentials(
+                userDTO.getEmail(),
+                userDTO.getPassword(),passwordEncoder);
 
         if(user != null){
+            // Generating token
             final String token = tokenProvider.create(user);
+
             final UserDTO responseUserDTO = UserDTO.builder()
                     .email(user.getEmail())
                     .id(user.getId())
                     .token(token)
                     .build();
             return ResponseEntity.ok().body(responseUserDTO);
-        } else {
+        }
+        else
+        {
             ResponseDTO responseDTO = ResponseDTO.builder()
-                    .error("Login failed.")
-                    .build();
+                    .error("Login Failed").build();
             return ResponseEntity.badRequest().body(responseDTO);
         }
-    }
 
+    }
 }

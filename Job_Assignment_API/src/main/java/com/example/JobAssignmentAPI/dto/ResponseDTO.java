@@ -1,4 +1,4 @@
-package com.example.JobAssignmentAPI.user;
+package com.example.JobAssignmentAPI.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

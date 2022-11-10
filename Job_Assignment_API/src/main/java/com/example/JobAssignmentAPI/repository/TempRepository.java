@@ -1,5 +1,6 @@
-package com.example.JobAssignmentAPI.temp;
+package com.example.JobAssignmentAPI.repository;
 
+import com.example.JobAssignmentAPI.model.Temp;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;

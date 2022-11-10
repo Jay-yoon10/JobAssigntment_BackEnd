@@ -1,6 +1,8 @@
-package com.example.JobAssignmentAPI.temp;
+package com.example.JobAssignmentAPI.controller;
 
-import com.example.JobAssignmentAPI.job.JobService;
+import com.example.JobAssignmentAPI.model.Temp;
+import com.example.JobAssignmentAPI.service.JobService;
+import com.example.JobAssignmentAPI.service.TempService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

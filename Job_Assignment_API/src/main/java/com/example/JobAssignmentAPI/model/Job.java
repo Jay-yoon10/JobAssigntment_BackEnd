@@ -1,7 +1,6 @@
-package com.example.JobAssignmentAPI.job;
+package com.example.JobAssignmentAPI.model;
 
-import com.example.JobAssignmentAPI.temp.Temp;
-import com.example.JobAssignmentAPI.temp.TempWithJobDTO;
+import com.example.JobAssignmentAPI.dto.TempWithJobDTO;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
